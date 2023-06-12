@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
     <title>js Handson 3</title>
 </head>
 <body>
@@ -62,8 +63,135 @@
             5
             6
             7"</pre>
-            <pre>→ set </pre>
-        <script src="./app.js"></script>
+            <pre>→ function printNumbersWithDelay(num, delay) {
+                let counter = 1;
+                 return new Promise((resolve, reject) =>{
+                     const interval = setInterval(() => {
+                    console.log(counter);
+                      counter++;
+                    if (counter > num) {
+                         clearInterval(interval);
+                        resolve();
+                        }
+                     }, delay);
+                   });
+                }
+               printNumbersWithDelay(7, 1000)
+               .then(() => {
+                     console.log("All done!");
+                   })
+                .catch((error) => {
+                     console.error(error);
+                  });
+                  </pre>
+        <p>Q.4 "Create a promise function accepting an argument, if yes is passed to the function then it should go to resolved state and print Promise Resolved, and if nothing is passed 
+            then it should go to reject the state and catch the error and print Promise Rejected "</p>
+        <pre>→ let variable=0;
+            function promiseFun(p){
+            let mypromise=new Promise((res,rej)=>{
+              if(variable==true)
+              {
+                  res("promise resolve successfully");
+              }else{
+                  rej("promise reject 1");
+              }
+            })}
+            promiseFun(variable)
+            .then((item)=>console.log(item))
+            .catch((err)=>console.log(err))</pre>
+   <p>Q.5 Create examples to explain callback function</p>      
+   <pre>→
+    function greet(name, callback) {
+        console.log('Hi' + ' ' + name);
+        callback();
+    }
+    function callMe() {
+        console.log('I am callback function');
+    }
+    
+    // passing function as an argument
+    greet('Peter', callMe);
+explain: In the above program, there are two functions. While calling the greet() function, two arguments (a string value and a function) are passed.
+
+The callMe() function is a callback function.
+
+</pre>  
+<p>Q.6 Create examples to explain callback hell function</p>
+<pre>The phenomenon which happens when we nest multiple callbacks within a function is called a callback hell. The shape of the resulting code structure resembles a pyramid and hence callback hell is also called the “pyramid of the doom”. It makes the code very difficult to understand and maintain. It is most frequently seen while working with Node.js. The code below shows an example of a callback hell.
+
+    To understand the internal working of callback hell in javascript, assume we have to achieve a task say D. To achieve task D, we need to execute a series of dependent tasks ranging from A to C asynchronously. In short, first we execute task A, we get the result and task B need to depend on result A to start its execution. Similarly, unless result B is produced we can't execute task C. This leads to the chaining of tasks from A to D, which creates a set of nested callbacks.
+    
+    In the example shown below, getUserData takes in an argument that is dependent or needs to be extracted from the result produced by getArticles which is inside user. The same dependency can be observed with getAddress also. This scenario is termed callback hell.
+    
+    example: getArticles(20, (user) => {
+      console.log("Fetch articles", user);
+      getUserData(user.username, (name) => {
+        console.log(name);
+        getAddress(name, (item) => {
+          console.log(item);
+          // this goes on and on...
+        })
+    })
+})
+</pre>
+    <p>Q.7 Create examples to explain promises function</p>
+    <pre>let variable=0;
+        function promiseFun(p){
+        let mypromise=new Promise((res,rej)=>{
+          if(variable==true)
+          {
+              res("promise resolve successfully");
+          }else{
+              rej("promise reject 1");
+          }
+        })}
+        promiseFun(variable)
+        .then((item)=>console.log(item))
+        .catch((err)=>console.log(err))
+    explain: if variable is true then resolve will print if not then print reject will print</pre>
+       
+    <p>Q.8 Create examples to explain async await function</p>
+    <pre>→ async function myDisplay() {
+        let myPromise = new Promise(function(resolve) {
+          setTimeout(function() {resolve("I love You !!");}, 3000);
+        });
+        document.getElementById("demo").innerHTML = await myPromise;
+      }
+      
+      myDisplay();</pre>
+      <p>Q.9Create examples to explain promise.all function </p>
+      <pre>→ let P= Add (10, 20);
+
+        function Abc (num1){
+        
+        return new Promise((res, rej) => { 
+         if (num12===0)
+            { res("This is a Even Number") }
+        
+        else{
+        
+        rej(This is a odd number)
+    }
+    })
+}
+        
+    const promisevar = new Promise((res, rej) => {
+        
+        if (false) {
+        
+        res( Hi EA23)
+        }
+        
+        else{
+        
+        rej("Sorrry!!!)
+        }
+    })
+        Promise.all([Abc(1), promisevar])
+        
+        .then((data) => console.log(data))
+        
+        .catch((err) => console.log(err))</pre><script src="./app.js"></script>
         
 </body>
 </html>
